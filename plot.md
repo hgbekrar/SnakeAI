@@ -1,3 +1,10 @@
+How to **plot** the data (number of apples eaten by number of games played) ?
+
+using *matplotlib.pyplot* 
+the raw data is not useful for a model poorely trained (grey color) 
+-> *np.convolve* to make the function smooth (red color)
+
+```python
 #fonction main avec affichage
 import matplotlib.pyplot as plt
 
@@ -52,3 +59,4 @@ def main():
     plt.grid(True, linestyle='--', alpha=0.5) # Une grille aide à lire les valeurs
     
     plt.show()
+```
