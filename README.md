@@ -12,7 +12,7 @@ You can find the different steps I go through in the file : Projet_SnakeAI_with_
 I find this repo very useful for me to track my progess. Each time I ask Gemini for a new feature in my project, I implement it and add the file in this repo.
 Thus, when you want to look at a specific feature of the project you can open the corresponding function in the repo.
 
-Basically : snakeAI.py contains the whole file BUT the other python files are slices of snakeAI.py which help understanding each features of the model separately. 
+Basically : snakeAI.py contains the whole file BUT the other python files are slices of snakeAI.py which help understanding each features of the model separately. Plus these slices of codes are much more explained and documented than in snakeAI.py to improve readability and understandability.
 
 I want to improve my general skills in python and ML in order to make more complex stuff progessively and more autonmously.
 
