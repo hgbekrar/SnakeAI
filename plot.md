@@ -9,6 +9,7 @@ the raw data is not useful for a model poorely trained (grey color)
 import matplotlib.pyplot as plt
 
 def main():
+
     
     # Paramètres dimensionnels
     n_x = 11
@@ -60,3 +61,5 @@ def main():
     
     plt.show()
 ```
+
+:<img width="1000" height="600" alt="progression_apprentissage_brut_in_grey_convolve_in_grey" src="https://github.com/user-attachments/assets/8be42dde-2990-4acd-add9-afddeb480d27" />
