@@ -1,7 +1,7 @@
 How to **plot** the data (number of apples eaten by number of games played) ?
 
 using *matplotlib.pyplot* 
-the raw data is not useful for a model poorely trained (grey color) 
+the raw data is not useful for a model not yet trained (grey color) 
 -> *np.convolve* to make the function smooth (red color)
 
 ```python
