@@ -38,7 +38,8 @@ def main():
     window_size = 50 # On fait la moyenne sur les 50 dernières parties
     if len(resultats) >= window_size:
         # np.convolve permet de lisser la courbe -> produit de convolution (intuitivement on fais glisser une fenêtre)
-        moyenne_mobile = np.convolve(resultats, np.ones(window_size)/window_size, mode='valid')
+        moyenne_mobile = np.convolve(resultats, np.ones(window_size)/window_size, mode='valid') #moyenne arithmétique : np.ones(window_size)/window_size
+                                                                                                #mode ='valid' = The convolution product is only given for points where the signals overlap completely
     else:
         moyenne_mobile = resultats # Fallback si pas assez de données
 
