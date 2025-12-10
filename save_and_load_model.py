@@ -44,7 +44,7 @@ def main():
         # Si on a trouvé un fichier, on récupère les poids entraînés
         W1, B1, W2, B2, epsilon,nb_iterations = loaded_data
     else:
-        # Sinon, on initialise tout à neuf (He initialization)
+        # Sinon, on initialise tout à neuf
         W1 = np.random.randn(n_h, n_x) * np.sqrt(2/n_x)
         B1 = np.zeros((n_h, 1))
         W2 = np.random.randn(n_y, n_h) * np.sqrt(2/n_h)
@@ -67,35 +67,5 @@ def main():
 
     nb_iterations+=iterations
     print("Training terminé sans erreur !",nb_iterations)
-
-
-
-    ##Affichage lisse en rouge et brut en gris
-    # 1. Calcul de la moyenne mobile (Moving Average)
-    window_size = 50 # On fait la moyenne sur les 50 dernières parties
-    if len(resultats) >= window_size:
-        # np.convolve permet de lisser la courbe
-        moyenne_mobile = np.convolve(resultats, np.ones(window_size)/window_size, mode='valid')
-    else:
-        moyenne_mobile = resultats # Fallback si pas assez de données
-
-    plt.figure(figsize=(12, 8)) # Agrandir la figure
-    
-    # 2. Afficher les scores bruts en gris clair (pour voir la variance)
-    plt.plot(resultats, label='Score par partie', color='lightgray', alpha=0.6)
-    
-    # 3. Afficher la moyenne mobile en rouge (pour voir la progression)
-    # On décale l'axe X pour qu'il s'aligne bien (car la moyenne commence après 'window_size' parties)
-    x_axis = np.arange(len(moyenne_mobile)) + window_size - 1
-    plt.plot(x_axis, moyenne_mobile, label=f'Moyenne mobile ({window_size} parties)', color='red', linewidth=2)
-
-    # 4. Labels et Titres
-    plt.title("Progression de l'apprentissage du Snake")
-    plt.xlabel("Numéro de l'entraînement")
-    plt.ylabel("Nombre de pommes mangées")
-    plt.legend()
-    plt.grid(True, linestyle='--', alpha=0.5) # Une grille aide à lire les valeurs
-    
-    plt.show()
 
     save_model(filename,W1,B1,W2,B2,epsilon,nb_iterations)
