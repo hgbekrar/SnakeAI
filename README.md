@@ -1,4 +1,4 @@
-Machine Learning Model playing Snake & Graphical Interface using Arcade
+Machine Learning Model playing Arcade Games & Graphical Interface using Arcade in Python
 - **Architecture of the model**
 - *Neural Networks*
 - *Bellman Equation*
@@ -6,14 +6,18 @@ Machine Learning Model playing Snake & Graphical Interface using Arcade
 
 - **Arcade**
 
-2 different achitectures trained by **reinforcement learning**
+Comparaison between architectures trained by **reinforcement learning**
 
-V1) *Partially observable Markov decision process*
+1) *Partially observable Markov decision process*
 - *input = local vision*
 - *experience replay*
 
-V2) *Markov decision process*
+2) *Markov decision process*
 - *input = the entire grid*
+
+  *2a)* **Deep Neural Networks (3 layers)**
+
+  *2b)* **Convolutional Neural Networks**
 
 Why Gemini 3 Pro (le goattt) will be used to make progress towards the goal : a tool useful to provide guidance for a *beginner* like me.
 
