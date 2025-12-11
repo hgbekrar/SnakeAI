@@ -9,7 +9,7 @@ Machine Learning Model playing Snake & Graphical Interface using Arcade
 2 different achitecture trained by **reinforcement learning**
 
 V1) *Partially observable Markov decision process*
-- *input = local directions*
+- *input = local vision*
 - *experience replay*
 
 V2) *Markov decision process*
