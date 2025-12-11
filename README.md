@@ -15,7 +15,7 @@ Comparaison between architectures trained by **reinforcement learning**
 2) *Markov decision process*
 - *input = the entire grid*
 
-  *2a)* **Deep Neural Networks (3 layers)**
+  *2a)* **Deep Neural Networks (2 layers)**
 
   *2b)* **Convolutional Neural Networks**
 
