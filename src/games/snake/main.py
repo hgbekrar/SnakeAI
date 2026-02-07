@@ -4,12 +4,11 @@ from enum import Enum
 from collections import namedtuple
 import numpy as np
 
-# Constantes
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
 SCREEN_TITLE = "Snake AI - Arcade & PyTorch"
 BLOCK_SIZE = 20
-SPEED = 20 # Vitesse pour la visualisation (plus c'est bas, plus c'est rapide en mode "no render")
+SPEED = 20
 
 class Direction(Enum):
     RIGHT = 1
@@ -26,7 +25,6 @@ class SnakeGameAI(arcade.Window):
         self.reset()
 
     def reset(self):
-        # État initial
         self.direction = Direction.RIGHT
         self.head = Point(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
         self.snake = [self.head, 
@@ -48,16 +46,13 @@ class SnakeGameAI(arcade.Window):
     def play_step(self, action):
         self.frame_iteration += 1
         
-        # 1. Gérer les événements (pour pouvoir fermer la fenêtre)
         self.dispatch_events()
-        self.on_draw() # Dessiner l'état actuel
-        self.update() # Mettre à jour l'écran
+        self.on_draw() 
+        self.update() 
 
-        # 2. Déplacer le serpent selon l'action de l'IA
         self._move(action)
         self.snake.insert(0, self.head)
         
-        # 3. Vérifier Game Over
         reward = 0
         game_over = False
         if self.is_collision() or self.frame_iteration > 100*len(self.snake):
@@ -65,7 +60,6 @@ class SnakeGameAI(arcade.Window):
             reward = -10
             return reward, game_over, self.score
 
-        # 4. Manger ou avancer
         if self.head == self.food:
             self.score += 1
             reward = 10
@@ -78,27 +72,24 @@ class SnakeGameAI(arcade.Window):
     def is_collision(self, pt=None):
         if pt is None:
             pt = self.head
-        # Hit boundary
         if pt.x > SCREEN_WIDTH - BLOCK_SIZE or pt.x < 0 or pt.y > SCREEN_HEIGHT - BLOCK_SIZE or pt.y < 0:
             return True
-        # Hit self
         if pt in self.snake[1:]:
             return True
         return False
 
     def _move(self, action):
-        # Action [Straight, Right, Left]
         clock_wise = [Direction.RIGHT, Direction.DOWN, Direction.LEFT, Direction.UP]
         idx = clock_wise.index(self.direction)
 
         if np.array_equal(action, [1, 0, 0]):
-            new_dir = clock_wise[idx] # No change
+            new_dir = clock_wise[idx]
         elif np.array_equal(action, [0, 1, 0]):
             next_idx = (idx + 1) % 4
-            new_dir = clock_wise[next_idx] # Right turn
-        else: # [0, 0, 1]
+            new_dir = clock_wise[next_idx] 
+        else: 
             next_idx = (idx - 1) % 4
-            new_dir = clock_wise[next_idx] # Left turn
+            new_dir = clock_wise[next_idx]
 
         self.direction = new_dir
 
@@ -109,36 +100,31 @@ class SnakeGameAI(arcade.Window):
         elif self.direction == Direction.LEFT:
             x -= BLOCK_SIZE
         elif self.direction == Direction.DOWN:
-            y -= BLOCK_SIZE # ATTENTION: Arcade Y vers le bas = soustraction
+            y -= BLOCK_SIZE 
         elif self.direction == Direction.UP:
-            y += BLOCK_SIZE # ATTENTION: Arcade Y vers le haut = addition
+            y += BLOCK_SIZE
 
         self.head = Point(x, y)
 
     def on_draw(self):
         self.clear()
-        # Dessiner Snake
         for pt in self.snake:
             arcade.draw_rectangle_filled(pt.x + BLOCK_SIZE/2, pt.y + BLOCK_SIZE/2, 
                                          BLOCK_SIZE, BLOCK_SIZE, arcade.color.BLUE)
             arcade.draw_rectangle_outline(pt.x + BLOCK_SIZE/2, pt.y + BLOCK_SIZE/2, 
                                           BLOCK_SIZE, BLOCK_SIZE, arcade.color.WHITE)
         
-        # Dessiner Tête (différente couleur)
         arcade.draw_rectangle_filled(self.head.x + BLOCK_SIZE/2, self.head.y + BLOCK_SIZE/2, 
                                      BLOCK_SIZE, BLOCK_SIZE, arcade.color.CYAN)
 
-        # Dessiner Nourriture
         arcade.draw_rectangle_filled(self.food.x + BLOCK_SIZE/2, self.food.y + BLOCK_SIZE/2, 
                                      BLOCK_SIZE, BLOCK_SIZE, arcade.color.RED)
         
-        # Score
         arcade.draw_text(f"Score: {self.score}", 
                          10, SCREEN_HEIGHT - 20, arcade.color.WHITE, 14)
 
     def update(self):
-        # Arcade a besoin de flip manuellement ici car on n'utilise pas arcade.run()
         try:
             super().flip()
         except:
-            pass # Parfois nécessaire selon les versions d'Arcade lors du training rapide
+            pass 
