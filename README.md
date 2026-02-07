@@ -7,7 +7,7 @@
 An autonomous agent that learns to play the classic Snake game using **Deep Reinforcement Learning**.
 This project demonstrates the implementation of a **Deep Q-Network (DQN)** from scratch using PyTorch, applied to a custom game environment built with the Python `arcade` library.
 
-## 🎯 Objective & Theory
+## Objective & Theory
 
 The goal is to train a neural network to approximate the Q-value function $Q(s, a)$, which represents the maximum expected future reward for taking action $a$ in state $s$.
 
@@ -27,14 +27,14 @@ Where:
 - **Output Layer (3 neurons):** Action space (Straight, Right Turn, Left Turn).
 - **Optimizer:** Adam with Mean Squared Error (MSE) loss.
 
-## 🛠️ Tech Stack & Features
+## Tech Stack & Features
 
 * **PyTorch:** For building the Linear QNet and handling tensor operations.
 * **Python Arcade:** A modern, object-oriented Python library used for the game engine (rendering and physics).
 * **Experience Replay:** Implemented a `deque` memory buffer to store past transitions $(s, a, r, s', done)$ and train on random mini-batches, breaking correlation between consecutive steps and stabilizing training.
 * **Epsilon-Greedy Strategy:** Balances exploration (random moves) and exploitation (model prediction) during the training phase.
 
-## 🚀 Installation & Usage
+## Installation & Usage
 
 1.  **Clone the repository**
     ```bash
@@ -53,5 +53,5 @@ Where:
     ```
     *The agent will start training immediately. The model is saved automatically to `./model/model.pth` whenever a new high score is reached.*
 
-## 📈 Results
+## Results
 The agent typically starts showing avoiding behaviors after 50 games and begins to actively seek food effectively after 100-150 games.
