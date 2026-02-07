@@ -21,12 +21,10 @@ class Agent:
     def get_state(self, game):
         head = game.snake[0]
         
-        # --- ADAPTATION ARCADE ---
-        # Dans Arcade : UP = y + 20, DOWN = y - 20
         point_l = Point(head.x - 20, head.y)
         point_r = Point(head.x + 20, head.y)
-        point_u = Point(head.x, head.y + 20) # Modifié pour Arcade (+Y)
-        point_d = Point(head.x, head.y - 20) # Modifié pour Arcade (-Y)
+        point_u = Point(head.x, head.y + 20) 
+        point_d = Point(head.x, head.y - 20)
         
         dir_l = game.direction == Direction.LEFT
         dir_r = game.direction == Direction.RIGHT
@@ -46,20 +44,17 @@ class Agent:
             (dir_l and game.is_collision(point_u)) or 
             (dir_r and game.is_collision(point_d)),
 
-            # Danger Left
             (dir_d and game.is_collision(point_r)) or 
             (dir_u and game.is_collision(point_l)) or 
             (dir_r and game.is_collision(point_u)) or 
             (dir_l and game.is_collision(point_d)),
             
-            # Move direction
             dir_l, dir_r, dir_u, dir_d,
             
-            # Food location 
-            game.food.x < game.head.x,  # Food left
-            game.food.x > game.head.x,  # Food right
-            game.food.y > game.head.y,  # Food up (Arcade: Y augmente vers le haut)
-            game.food.y < game.head.y   # Food down
+            game.food.x < game.head.x,  
+            game.food.x > game.head.x, 
+            game.food.y > game.head.y,  
+            game.food.y < game.head.y  
         ]
         return np.array(state, dtype=int)
 
@@ -96,13 +91,12 @@ def train():
     total_score = 0
     record = 0
     agent = Agent()
-    game = SnakeGameAI() # Lance la fenêtre Arcade
+    game = SnakeGameAI() 
     
     while True:
         state_old = agent.get_state(game)
         final_move = agent.get_action(state_old)
         
-        # Le "step" du jeu
         reward, done, score = game.play_step(final_move)
         
         state_new = agent.get_state(game)
@@ -120,3 +114,4 @@ def train():
 
 if __name__ == '__main__':
     train()
+
