@@ -34,24 +34,6 @@ Where:
 * **Experience Replay:** Implemented a `deque` memory buffer to store past transitions $(s, a, r, s', done)$ and train on random mini-batches, breaking correlation between consecutive steps and stabilizing training.
 * **Epsilon-Greedy Strategy:** Balances exploration (random moves) and exploitation (model prediction) during the training phase.
 
-## Installation & Usage
-
-1.  **Clone the repository**
-    ```bash
-    git clone [https://github.com/hgbekrar/SnakeAI.git](https://github.com/hgbekrar/SnakeAI.git)
-    cd SnakeAI
-    ```
-
-2.  **Install dependencies**
-    ```bash
-    pip install torch arcade numpy matplotlib
-    ```
-
-3.  **Run the Training Agent**
-    ```bash
-    python agent.py
-    ```
-    *The agent will start training immediately. The model is saved automatically to `./model/model.pth` whenever a new high score is reached.*
 
 ## Results
 The agent typically starts showing avoiding behaviors after 50 games and begins to actively seek food effectively after 100-150 games.
