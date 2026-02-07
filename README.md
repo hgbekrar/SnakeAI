@@ -30,7 +30,7 @@ Where:
 ## Tech Stack & Features
 
 * **PyTorch:** For building the Linear QNet and handling tensor operations.
-* **Python Arcade:** A modern, object-oriented Python library used for the game engin.
+* **Python Arcade:** A modern, object-oriented Python library used for the game engine.
 * **Experience Replay:** Implemented a `deque` memory buffer to store past transitions $(s, a, r, s', done)$ and train on random mini-batches.
 * **Epsilon-Greedy Strategy:** Balances exploration (random moves) and predictions during the training phase. After 80 games we opt for a full exploration phase.
 
